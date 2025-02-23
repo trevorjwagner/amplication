@@ -1,0 +1,23 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Enterprise {
+  createdAt         DateTime                @default(now())
+  description       String?
+  establishedDate   DateTime?
+  id                String                  @id @default(cuid())
+  industry          EnumEnterpriseIndustry?
+  name              String?
+  numberOfEmployees Int?
+  updatedAt         DateTime                @updatedAt
+}
+
+enum EnumEnterpriseIndustry {
+  Option1
+}
